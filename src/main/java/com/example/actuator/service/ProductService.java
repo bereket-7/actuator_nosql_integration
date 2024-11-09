@@ -2,7 +2,9 @@ package com.example.actuator.service;
 
 import com.example.actuator.model.Product;
 import com.example.actuator.respository.ProductRepository;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,10 +17,10 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public Page<Product> getAllProducts(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return productRepository.findAll(pageable);
     }
-
     public Product getProductById(String id) {
         return productRepository.findById(id).orElse(null);
     }
