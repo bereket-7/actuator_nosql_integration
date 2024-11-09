@@ -2,6 +2,7 @@ package com.example.actuator.controller;
 
 import com.example.actuator.model.Product;
 import com.example.actuator.service.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,5 +35,10 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable String id) {
         productService.deleteProduct(id);
+    }
+
+    @DeleteMapping("/all")
+    public String deleteAllProducts() {
+        return productService.deleteAllProduct();
     }
 }
