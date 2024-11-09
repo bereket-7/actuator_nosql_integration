@@ -2,6 +2,7 @@ package com.example.actuator.controller;
 
 import com.example.actuator.model.Product;
 import com.example.actuator.service.ProductService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,10 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    @GetMapping()
+    public Page<Product> getAllProducts(@RequestParam(defaultValue = "0") int page,
+                                        @RequestParam(defaultValue = "10") int size) {
+        return productService.getAllProducts(page, size);
     }
 
     @GetMapping("/{id}")
@@ -27,7 +29,7 @@ public class ProductController {
         return productService.getProductById(id);
     }
 
-    @PostMapping
+    @PostMapping()
     public Product addProduct(@RequestBody Product product) {
         return productService.addProduct(product);
     }
