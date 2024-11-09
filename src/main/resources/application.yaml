@@ -1,0 +1,20 @@
+
+server:
+  port: 9990
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/demo_db
+  application:
+    name: actuator
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+
+  endpoint:
+    health:
+      show-details: always
