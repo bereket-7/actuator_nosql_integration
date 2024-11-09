@@ -2,6 +2,7 @@ package com.example.actuator.service;
 
 import com.example.actuator.model.Product;
 import com.example.actuator.respository.ProductRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,5 +29,9 @@ public class ProductService {
 
     public void deleteProduct(String id) {
         productRepository.deleteById(id);
+    }
+    public String deleteAllProduct() {
+        productRepository.deleteAll();
+        return ("All products have been deleted");
     }
 }
